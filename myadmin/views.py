@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def dashboard(request):
-    return render(request, 'myadmin/dashboard.html', {})
+    return render(request, 'myadmin/dashboard.html', {'section': 'dashboard', })
