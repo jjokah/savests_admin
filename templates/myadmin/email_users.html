@@ -1,0 +1,33 @@
+{% extends 'myadmin/base.html' %}
+
+{% block section %}Send {{ section|capfirst}}{% endblock section %}
+
+{% block content %}
+
+  {% if sent %}
+    <div class="card-block">
+      <h3 class="card-title">Message Sent</h3>
+      <p>Email was sent successfully</p>
+    </div>
+  {% else %}
+    <section class="row">
+    <div class="col-sm-12">
+      <section class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="card mb-4">
+            <div class="card-block">
+              <h3 class="card-title">Message for Users</h3>
+              <form method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-md btn-primary" value="Send Mail">
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    </section>
+  {% endif %}
+  
+{% endblock content %}

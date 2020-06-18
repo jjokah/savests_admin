@@ -1,7 +1,11 @@
+from datetime import timedelta
+
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.utils import timezone
-from datetime import timedelta
+
+from .forms import EmailPostForm
 
 
 def dashboard(request):
@@ -31,3 +35,29 @@ def users_list(request):
                   'myadmin/users.html',
                   {'section': 'users',
                    'users': users})
+
+
+def email_users(request):
+    sent = False
+    users_email = list(User.objects.values_list('email', flat=True))
+
+    if request.method == 'POST':
+        # Form was submitted
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # Form fields passed validation
+            cd = form.cleaned_data
+            sender = request.user.email
+            subject = "Message from Admin"
+            message = cd['message']
+            send_mail(subject, message, sender, users_email)
+            sent = True
+    else:
+        form = EmailPostForm()
+
+    return render(request,
+                  'myadmin/email_users.html',
+                  {'section': 'email',
+                   'form': form,
+                   'sent': sent,
+                   })
