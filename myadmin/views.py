@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.shortcuts import render
@@ -8,6 +9,7 @@ from django.utils import timezone
 from .forms import EmailPostForm
 
 
+@login_required
 def dashboard(request):
     now = timezone.now()
     a_day_ago = now - timedelta(hours=24)
@@ -29,6 +31,7 @@ def dashboard(request):
                    'created_within_a_month': created_within_a_month})
 
 
+@login_required
 def users_list(request):
     users = User.objects.all()
     return render(request,
@@ -37,6 +40,7 @@ def users_list(request):
                    'users': users})
 
 
+@login_required
 def email_users(request):
     sent = False
     users_email = list(User.objects.values_list('email', flat=True))

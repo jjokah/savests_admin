@@ -37,7 +37,7 @@
 					<li class="nav-item"><a {% if section == "email" %}class="nav-link active"{% else %}class="nav-link"{% endif %} href="{% url 'email_users' %}"><em class="fa fa-envelope"></em> Send Mail</a></li>
 				</ul>
 				<a href=" {% static 'myadmin/login.html' %} " class="logo"><img src=" {% static 'myadmin/./images/logo.png' %} " alt="logo"></a>
-				<a href=" {% static 'myadmin/login.html' %} " class="logout-button"><em class="fa fa-power-off"></em> Signout</a>
+				<a href="{% url 'admin:logout' %}" class="logout-button"><em class="fa fa-power-off"></em> Signout</a>
 			</nav>
 			<!-- //Side Bar -->
 
@@ -57,8 +57,8 @@
 						</div>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" style="margin-right: 1.5rem;" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#"><em class="fa fa-user-circle mr-1"></em> View Profile</a>
-						     <a class="dropdown-item" href="#"><em class="fa fa-sliders mr-1"></em> Preferences</a>
-						     <a class="dropdown-item" href="#"><em class="fa fa-power-off mr-1"></em> Logout</a></div>
+						     <a class="dropdown-item" href=""><em class="fa fa-sliders mr-1"></em> Preferences</a>
+						     <a class="dropdown-item" href=""><em class="fa fa-power-off mr-1"></em> Logout</a></div>
 					</div>
 					<div class="clear"></div>
 				</header>
