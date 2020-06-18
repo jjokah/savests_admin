@@ -14,7 +14,31 @@ A customized Admin dashboard - SaVests Interview Project
 ## Example
 
 ```python
-xxx
+@login_required
+def email_users(request):
+    sent = False
+    users_email = list(User.objects.values_list('email', flat=True))
+
+    if request.method == 'POST':
+        # Form was submitted
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # Form fields passed validation
+            cd = form.cleaned_data
+            sender = request.user.email
+            subject = "Message from Admin"
+            message = cd['message']
+            send_mail(subject, message, sender, users_email)
+            sent = True
+    else:
+        form = EmailPostForm()
+
+    return render(request,
+                  'myadmin/email_users.html',
+                  {'section': 'email',
+                   'form': form,
+                   'sent': sent,
+                   })
 ```
 
 ### Getting Started
