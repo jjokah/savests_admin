@@ -23,3 +23,11 @@ def dashboard(request):
                    'created_within_a_day': created_within_a_day,
                    'created_within_a_week': created_within_a_week,
                    'created_within_a_month': created_within_a_month})
+
+
+def users_list(request):
+    users = User.objects.all()
+    return render(request,
+                  'myadmin/users.html',
+                  {'section': 'users',
+                   'users': users})

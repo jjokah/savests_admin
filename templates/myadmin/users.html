@@ -1,0 +1,39 @@
+{% extends 'myadmin/base.html' %}
+
+{% block section %}{{ section|capfirst }}{% endblock section %}
+
+{% block content %}
+  <section class="row">
+      <div class="col-sm-12">
+        <section class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="card mb-4">
+              <div class="card-block">
+                <h3 class="card-title">Users List</h3>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>S/N</th>
+                        <th>Username</th>
+                        <th>Activate/Disable User</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for user in users %}
+
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{user.username }}</td>
+                          <td><button class="btn btn-md btn-danger">Disable</button></td>
+                        </tr>
+                      
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+                    </section>
+{% endblock content %}
