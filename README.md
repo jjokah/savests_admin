@@ -13,6 +13,11 @@ A customized Admin dashboard - SaVests Interview Project
 
 ## Example
 
+- Screenshot
+![savests](savests.png)
+
+- Code Example
+
 ```python
 @login_required
 def email_users(request):
