@@ -12,7 +12,10 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+
+# don't ignore dist - dev_env
+# dist/
+
 downloads/
 eggs/
 .eggs/
